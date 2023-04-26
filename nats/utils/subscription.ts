@@ -4,10 +4,10 @@ import { createAuthenticator } from './authenticator';
 import {decodeMessage, encodeMessage} from './codec';
 import { natsStaticConfig } from './config';
 
-async function natsConnect(config: NatsConfig, jwt: string) {
+async function natsConnect(config: NatsConfig, jwt: string, nkey: string) {
   const options: ConnectionOptions = {
     servers: config.url,
-    authenticator: createAuthenticator(jwt),
+    authenticator: createAuthenticator(jwt, nkey),
   };
 
   return await connect(options);
@@ -41,14 +41,15 @@ interface SubscribeProps {
   onMessages: NatsMessagesCallback;
   onError: (text: string, error: Error) => void;
   jwt: string;
+  nkey: string;
   config?: NatsConfig;
 }
 
-export async function subscribe({ onMessages, onError, jwt, config = natsStaticConfig }: SubscribeProps) {
+export async function subscribe({ onMessages, onError, jwt, nkey, config = natsStaticConfig }: SubscribeProps) {
 
   if (!config.connection) {
     try {
-      config.connection = await natsConnect(config, jwt);
+      config.connection = await natsConnect(config, jwt, nkey);
     } catch (err: any) {
       onError('Unable to connect to NATS.', err);
       return;
@@ -58,7 +59,7 @@ export async function subscribe({ onMessages, onError, jwt, config = natsStaticC
   config.subscription = natsSubscribe({ connection: config.connection, onMessages, onError });
 }
 
-export async function publish(config = natsStaticConfig, subject, data) {
+export async function publish(subject: string, data: string, config = natsStaticConfig) {
 
   if (config.connection) {
     config.connection.publish(subject, encodeMessage(data));

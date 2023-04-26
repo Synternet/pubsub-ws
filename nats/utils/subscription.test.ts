@@ -17,6 +17,7 @@ describe('subscription', () => {
         onMessages: jest.fn(),
         onError: jest.fn(),
         jwt: 'fakeJwt',
+        nkey: 'fakeNKey',
         config: mockNatsConfig({ url: 'someUrl1', connection: undefined }),
       });
       expect(connect).toBeCalledWith({ authenticator: 'authenticator', servers: 'someUrl1' });
@@ -24,8 +25,8 @@ describe('subscription', () => {
 
     it('uses provided jwt for authenticator', async () => {
       const createAuthenticator = jest.spyOn(authenticator, 'createAuthenticator');
-      await subscribe({ onMessages: jest.fn(), onError: jest.fn(), jwt: 'superJwt', config: mockNatsConfig() });
-      expect(createAuthenticator).toBeCalledWith('superJwt');
+      await subscribe({ onMessages: jest.fn(), onError: jest.fn(), jwt: 'superJwt', nkey: 'fakeNKey', config: mockNatsConfig() });
+      expect(createAuthenticator).toBeCalledWith('superJwt', 'fakeNKey');
     });
 
     it('subscribes to all nats topics (">")', async () => {
@@ -33,7 +34,7 @@ describe('subscription', () => {
       const connection = mockNatsConnection({ subscribe: natsSubscribe });
       jest.spyOn(nats, 'connect').mockResolvedValue(connection);
 
-      await subscribe({ onMessages: jest.fn(), onError: jest.fn(), jwt: 'fakeJwt', config: mockNatsConfig() });
+      await subscribe({ onMessages: jest.fn(), onError: jest.fn(), jwt: 'fakeJwt', nkey: 'fakeNKey', config: mockNatsConfig() });
 
       expect(natsSubscribe.mock.lastCall[0]).toStrictEqual('>');
     });
@@ -51,7 +52,7 @@ describe('subscription', () => {
       const decodeMessage = jest.spyOn(codec, 'decodeMessage').mockReturnValue(decodedMessage);
       const onMessages = jest.fn();
 
-      await subscribe({ onMessages, onError: jest.fn(), jwt: 'fakeJwt', config: mockNatsConfig() });
+      await subscribe({ onMessages, onError: jest.fn(), jwt: 'fakeJwt', nkey: 'fakeNKey', config: mockNatsConfig() });
       const natsMessage = mockMsg();
       subscriptionOptions.callback(null, natsMessage);
 
