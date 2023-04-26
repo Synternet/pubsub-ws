@@ -10,6 +10,12 @@ async function natsConnect(config: NatsConfig, jwt: string, nkey: string) {
     authenticator: createAuthenticator(jwt, nkey),
   };
 
+  if (typeof window === 'undefined') {
+    // We are in a Node.js environment
+    globalThis.WebSocket = require("websocket").w3cwebsocket;
+  }
+
+  console.log(options);
   return await connect(options);
 }
 

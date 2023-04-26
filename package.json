@@ -10,7 +10,8 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "nats.ws": "^1.14.0"
+    "nats.ws": "^1.14.0",
+    "websocket": "^1.0.34"
   },
   "devDependencies": {
     "@types/jest": "^29.5.1",
