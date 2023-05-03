@@ -20,15 +20,17 @@ async function natsConnect(config: NatsConfig, jwt: string, nkey: string) {
 }
 
 function natsSubscribe({
-  connection,
-  onMessages,
-  onError,
-}: {
+                         connection,
+                         onMessages,
+                         onError,
+                         subject,
+                       }: {
   connection: NatsConnection;
   onMessages: NatsMessagesCallback;
   onError: NatsErrorCallback;
+  subject: string;
 }) {
-  const subscription = connection.subscribe('>', {
+  const subscription = connection.subscribe(subject, {
     callback: (err, msg) => {
       if (err) {
         onError('NATS subscription error.', err);
@@ -37,7 +39,7 @@ function natsSubscribe({
 
       const message = decodeMessage(msg);
       onMessages([message]);
-      },
+    },
   });
 
   return subscription;
@@ -48,10 +50,11 @@ interface SubscribeProps {
   onError: (text: string, error: Error) => void;
   jwt: string;
   nkey: string;
+  subject: string;
   config?: NatsConfig;
 }
 
-export async function subscribe({ onMessages, onError, jwt, nkey, config = natsStaticConfig }: SubscribeProps) {
+export async function subscribe({ onMessages, onError, jwt, nkey, subject, config = natsStaticConfig }: SubscribeProps) {
 
   if (!config.connection) {
     try {
@@ -62,7 +65,7 @@ export async function subscribe({ onMessages, onError, jwt, nkey, config = natsS
     }
   }
 
-  config.subscription = natsSubscribe({ connection: config.connection, onMessages, onError });
+  config.subscription = natsSubscribe({ connection: config.connection, onMessages, onError, subject });
 }
 
 export async function publish(subject: string, data: string, config = natsStaticConfig) {

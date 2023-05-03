@@ -29,7 +29,7 @@ async function init() {
     const nkey = 'CREDS_SEED';
 
     // Subscribe to messages
-    await subscribe({ onMessages, onError, jwt, nkey });
+    await subscribe({ onMessages, onError, jwt, nkey, subject: '>'  });
 
 }
 

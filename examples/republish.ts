@@ -30,6 +30,7 @@ async function main() {
         jwt: userCredsJWT,
         nkey: userCredsSeed,
         config: { url: natsWsUrl },
+        subject: exampleSubscribeSubject
     });
     console.log('Connected to NATS server.');
 }
