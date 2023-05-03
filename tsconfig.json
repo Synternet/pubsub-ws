@@ -1,7 +1,7 @@
 {
   "compilerOptions": {
     "esModuleInterop": true,
-    "module": "commonjs",
+    "module": "ESNext",
     "target": "es6",
     "strict": true,
     "moduleResolution": "node",
@@ -13,6 +13,6 @@
     },
     "resolveJsonModule": true
   },
-  "include": ["src/**/*"],
+  "include": ["nats/**/*"],
   "exclude": ["node_modules", "dist"]
 }
