@@ -37,7 +37,7 @@ describe('subscription', () => {
 
       await subscribe({ onMessages: jest.fn(), onError: jest.fn(), jwt: 'fakeJwt', nkey: 'fakeNKey', subject: 'subject', config: mockNatsConfig() });
 
-      expect(natsSubscribe.mock.lastCall[0]).toStrictEqual('>');
+      expect(natsSubscribe.mock.lastCall[0]).toStrictEqual('subject');
     });
 
     it('subscribe callback is called with decoded message when message is received in nats', async () => {

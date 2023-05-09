@@ -9,13 +9,12 @@ async function natsConnect(config: NatsConfig, jwt: string, nkey: string) {
     servers: config.url,
     authenticator: createAuthenticator(jwt, nkey),
   };
-
   if (typeof window === 'undefined') {
     // We are in a Node.js environment
-    globalThis.WebSocket = require("websocket").w3cwebsocket;
+    Object.assign(global, { WebSocket: require("ws") });
+    (process.env as any)["NODE_TLS_REJECT_UNAUTHORIZED"] = 0;
   }
 
-  console.log(options);
   return await connect(options);
 }
 
