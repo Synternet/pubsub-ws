@@ -13,35 +13,29 @@
 To install the library, use the following command:
 
 ```bash
-npm install --save syntropy-pubsub-ws
+npm install git@gitlab.com:syntropynet/amberdm/sdk/pubsub-ws.git
 ```
 
 ## Usage
-Here is a simple example demonstrating how to subscribe to a data stream and republish the received data to another stream:
+Here is a simple example demonstrating how to subscribe to a data stream using seed from developer-portal:
 
 ```typescript
-import { subscribe, publish } from '../pubsub';
-import { Message } from '../pubsub';
-import {NatsConfig} from "../pubsub/types";
+import { subscribe, Message, NatsConfig, createAppJwt } from 'pubsub-ws';
 
 const natsWsUrl = 'wss://url.com:443';
-const userCredsJWT = 'USER_JWT';
-const userCredsSeed = 'CREDS_SEED';
+const userCredsSeed = 'SAAGNJOZTRPYYXG2NJX3ZNGXYUSDYX2BWO447W3SHG6XQ7U66RWHQ3JUXM';
 const exampleSubscribeSubject = 'example.sub.subject';
-const examplePublishSubject = 'example.pub.subject';
 
 var config: NatsConfig;
 
-async function republishData(message: Message) {
+async function printData(message: Message) {
     console.log('Received message on', exampleSubscribeSubject, 'subject');
-    publish(examplePublishSubject, message.data, config);
-    console.log('Published message on', examplePublishSubject, 'subject');
 }
 
 const onMessages = async (messages: Message[]) => {
     messages
         .filter((message) => message.subject === exampleSubscribeSubject)
-        .forEach((message) => republishData(message));
+        .forEach((message) => printData(message));
 };
 
 const onError = (text: string, error: Error) => {
@@ -50,11 +44,13 @@ const onError = (text: string, error: Error) => {
 
 async function main() {
     config = { url: natsWsUrl }
+    const { userSeed: seed, jwt } = createAppJwt(userCredsSeed);
+
     await subscribe({
         onMessages,
         onError,
-        jwt: userCredsJWT,
-        nkey: userCredsSeed,
+        jwt: jwt,
+        nkey: seed,
         config: config,
         subject: exampleSubscribeSubject
     });
