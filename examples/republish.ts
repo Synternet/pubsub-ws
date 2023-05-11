@@ -1,6 +1,6 @@
-import { subscribe, publish } from '../nats';
-import { Message } from '../nats';
-import {NatsConfig} from "../nats/types";
+import { subscribe, publish } from '../pubsub';
+import { Message } from '../pubsub';
+import {NatsConfig} from "../pubsub/types";
 
 const natsWsUrl = 'wss://url.com:443';
 const userCredsJWT = 'USER_JWT';

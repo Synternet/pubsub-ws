@@ -20,9 +20,9 @@ npm install --save syntropy-pubsub-ws
 Here is a simple example demonstrating how to subscribe to a data stream and republish the received data to another stream:
 
 ```typescript
-import { subscribe, publish } from '../nats';
-import { Message } from '../nats';
-import {NatsConfig} from "../nats/types";
+import { subscribe, publish } from '../pubsub';
+import { Message } from '../pubsub';
+import {NatsConfig} from "../pubsub/types";
 
 const natsWsUrl = 'wss://url.com:443';
 const userCredsJWT = 'USER_JWT';

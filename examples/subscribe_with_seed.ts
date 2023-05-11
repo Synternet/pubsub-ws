@@ -1,7 +1,7 @@
-import { subscribe } from '../nats';
-import { Message } from '../nats';
-import {NatsConfig} from "../nats/types";
-import {createAppJwt} from "../nats/userJwt";
+import { subscribe } from '../pubsub';
+import { Message } from '../pubsub';
+import {NatsConfig} from "../pubsub/types";
+import {createAppJwt} from "../pubsub/userJwt";
 
 const natsWsUrl = 'wss://url.com:443';
 const userCredsSeed = 'SAAGNJOZTRPYYXG2NJX3ZNGXYUSDYX2BWO447W3SHG6XQ7U66RWHQ3JUXM';

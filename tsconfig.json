@@ -13,6 +13,8 @@
     },
     "resolveJsonModule": true
   },
-  "include": ["nats/**/*"],
+  "include": [
+    "pubsub/**/*"
+  ],
   "exclude": ["node_modules", "dist"]
 }

@@ -2,8 +2,8 @@ import { mockMsg } from '../mocks';
 import * as codec from './codec';
 import { decodeMessage } from './codec';
 
-jest.mock('nats.ws', () => ({
-  ...jest.requireActual('nats.ws'),
+jest.mock('pubsub.ws', () => ({
+  ...jest.requireActual('pubsub.ws'),
   StringCodec: jest.fn().mockReturnValue({ decode: () => 'decodedData' }),
 }));
 

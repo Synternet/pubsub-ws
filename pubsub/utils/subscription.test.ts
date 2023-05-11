@@ -11,7 +11,7 @@ describe('subscription', () => {
       jest.spyOn(authenticator, 'createAuthenticator').mockReturnValue('authenticator' as any);
     });
 
-    it('creates nats connection using provided server url when it is not created', async () => {
+    it('creates pubsub connection using provided server url when it is not created', async () => {
       const connect = jest.spyOn(nats, 'connect').mockResolvedValue(mockNatsConnection());
       await subscribe({
         onMessages: jest.fn(),
@@ -30,7 +30,7 @@ describe('subscription', () => {
       expect(createAuthenticator).toBeCalledWith('superJwt', 'fakeNKey');
     });
 
-    it('subscribes to all nats topics (">")', async () => {
+    it('subscribes to all pubsub topics (">")', async () => {
       const natsSubscribe = jest.fn().mockImplementation();
       const connection = mockNatsConnection({ subscribe: natsSubscribe });
       jest.spyOn(nats, 'connect').mockResolvedValue(connection);
@@ -40,7 +40,7 @@ describe('subscription', () => {
       expect(natsSubscribe.mock.lastCall[0]).toStrictEqual('subject');
     });
 
-    it('subscribe callback is called with decoded message when message is received in nats', async () => {
+    it('subscribe callback is called with decoded message when message is received in pubsub', async () => {
 
       let subscriptionOptions: any;
       const natsSubscribe = jest.fn().mockImplementation((_subject, options) => {
