@@ -14,7 +14,8 @@
     "resolveJsonModule": true
   },
   "include": [
-    "pubsub/**/*"
+    "pubsub/**/*",
+    "index.ts"
   ],
   "exclude": ["node_modules", "dist"]
 }

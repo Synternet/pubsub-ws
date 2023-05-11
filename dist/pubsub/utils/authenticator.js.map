@@ -1,0 +1,1 @@
+{"version":3,"file":"authenticator.js","sourceRoot":"","sources":["../../../pubsub/utils/authenticator.ts"],"names":[],"mappings":";;;AAAA,qCAA2C;AAE3C,SAAgB,mBAAmB,CAAC,GAAW,EAAE,IAAY;IAC3D,MAAM,cAAc,GAAG,IAAI,WAAW,EAAE,CAAC,MAAM,CAAC,IAAI,CAAC,CAAC;IACtD,OAAO,IAAA,0BAAgB,EAAC,GAAG,EAAE,cAAc,CAAC,CAAC;AAC/C,CAAC;AAHD,kDAGC"}
