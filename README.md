@@ -19,11 +19,12 @@ npm install git@gitlab.com:syntropynet/amberdm/sdk/pubsub-ws.git
 ## Usage
 Here is a simple example demonstrating how to subscribe to a data stream using seed from developer-portal:
 
+### The preferred method of authentication is using an access token from the developer portal.
 ```typescript
 import { subscribe, Message, NatsConfig, createAppJwt } from 'pubsub-ws';
 
 const natsWsUrl = 'wss://url.com:443';
-const userCredsSeed = 'SAAGNJOZTRPYYXG2NJX3ZNGXYUSDYX2BWO447W3SHG6XQ7U66RWHQ3JUXM';
+const accessToken = 'SAAGNJOZTRPYYXG2NJX3ZNGXYUSDYX2BWO447W3SHG6XQ7U66RWHQ3JUXM';
 const exampleSubscribeSubject = 'example.sub.subject';
 
 var config: NatsConfig;
@@ -44,7 +45,7 @@ const onError = (text: string, error: Error) => {
 
 async function main() {
     config = { url: natsWsUrl }
-    const { userSeed: seed, jwt } = createAppJwt(userCredsSeed);
+    const { userSeed: seed, jwt } = createAppJwt(accessToken);
 
     await subscribe({
         onMessages,

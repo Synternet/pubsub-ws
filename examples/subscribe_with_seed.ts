@@ -4,7 +4,7 @@ import {NatsConfig} from "../pubsub/types";
 import {createAppJwt} from "../pubsub/userJwt";
 
 const natsWsUrl = 'wss://url.com:443';
-const userCredsSeed = 'SAAGNJOZTRPYYXG2NJX3ZNGXYUSDYX2BWO447W3SHG6XQ7U66RWHQ3JUXM';
+const accessToken = 'SAAGNJOZTRPYYXG2NJX3ZNGXYUSDYX2BWO447W3SHG6XQ7U66RWHQ3JUXM';
 const exampleSubscribeSubject = 'example.sub.subject';
 
 var config: NatsConfig;
@@ -25,7 +25,7 @@ const onError = (text: string, error: Error) => {
 
 async function main() {
     config = { url: natsWsUrl }
-    const { userSeed: seed, jwt } = createAppJwt(userCredsSeed);
+    const { userSeed: seed, jwt } = createAppJwt(accessToken);
 
     await subscribe({
         onMessages,
