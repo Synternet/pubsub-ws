@@ -1,6 +1,6 @@
 Welcome to the documentation for the WebSocket SDK for the Data Availability Layer! This SDK allows seamless integration with our Data Availability Layer solution, enabling you to leverage real-time data streams in your applications using WebSocket communication. With the WebSocket SDK, you can unlock the power of the Data Availability Layer and harness real-time insights for your data-driven projects.
 
-[syntropy-pubsub-ws](https://github.com/SyntropyNet/pubsub-ws) is a TypeScript library for the Syntropy DataMesh project that allows you to subscribe to **existing data streams or publish new ones from frontend applications**. This library is built on top of the NATS messaging system with WebSocket support, providing a convenient way to integrate your frontend **TypeScript** applications with the Syntropy DataMesh platform.
+[syntropy-pubsub-ws](https://github.com/SyntropyNet/pubsub-ws) is a TypeScript library for the Syntropy Data Availability Layer project that allows you to subscribe to **existing data streams or publish new ones from frontend applications**. This library is built on top of the NATS messaging system with WebSocket support, providing a convenient way to integrate your frontend **TypeScript** applications with the Syntropy Data Availability Layer platform.
 
 # Features
 
@@ -32,20 +32,20 @@ npm install syntropynet-pubsub-ws
 
 # Getting Started
 
-Before you begin using the WebSocket SDK, make sure you have the necessary credentials and access tokens from the SyntropyNet platform. These credentials will allow you to connect to the Data Availability Layer and subscribe to or publish data streams.
+Before you begin using the WebSocket SDK, make sure you have the necessary credentials and access tokens from the Syntropy Developer Portalplatform. These credentials will allow you to connect to the Data Availability Layer and subscribe to or publish data streams.
 
 ## Usage
 
 1. Import the SDK in your JavaScript code:
 
 ```javascript
-import { DataMeshClient } from 'syntropynet-pubsub-ws';
+import { Data Availability LayerClient } from 'syntropynet-pubsub-ws';
 ```
 
 2. Initialize the client:
 
 ```javascript
-const client = new DataMeshClient({ accessToken: 'your-access-token', privateKey: 'your-private-key' });
+const client = new Data Availability LayerClient({ accessToken: 'your-access-token', privateKey: 'your-private-key' });
 ```
 
 3. Subscribe to a Data Stream:
