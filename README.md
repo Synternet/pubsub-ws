@@ -18,16 +18,10 @@ With these powerful features, the WebSocket SDK empowers you to seamlessly inter
 
 # Installation
 
-To use the WebSocket SDK for Data Availability Layer in your project, you can include the provided JavaScript file in your HTML:
-
-```html
-<script src="path/to/pubsub-ws.js"></script>
-```
-
-Alternatively, you can install it using npm:
+To use the WebSocket SDK for Data Availability Layer in your project you can install it using npm:
 
 ```shell
-npm install syntropynet-pubsub-ws
+npm install git@github.com:SyntropyNet/pubsub-ws
 ```
 
 # Getting Started
@@ -36,46 +30,11 @@ Before you begin using the WebSocket SDK, make sure you have the necessary crede
 
 ## Usage
 
-1. Import the SDK in your JavaScript code:
-
-```javascript
-import { Data Availability LayerClient } from 'syntropynet-pubsub-ws';
-```
-
-2. Initialize the client:
-
-```javascript
-const client = new Data Availability LayerClient({ accessToken: 'your-access-token', privateKey: 'your-private-key' });
-```
-
-3. Subscribe to a Data Stream:
-
-```javascript
-const stream = client.subscribe('stream-name');
-```
-
-4. Receive Data Stream Events:
-
-```javascript
-stream.on('event', (event) => {
-  // Handle the data stream event
-  console.log('Received event:', event);
-});
-```
-
-5. Publish Data to a Stream:
-
-```javascript
-client.publish('stream-name', 'Hello, Data Availability Layer!');
-```
-
-## Examples
-
 For detailed usage examples, please refer to the [examples directory](https://github.com/SyntropyNet/pubsub-ws/examples) in the repository. These examples cover various scenarios and demonstrate how to utilize the SDK's features effectively.
 
 The preferred method of authentication is using an access token from the [developer portal](https://developer-portal.syntropynet.com/).
 
-```Text TypeScript
+```TypeScript
 import { subscribe, Message, NatsConfig, createAppJwt } from 'pubsub-ws';
 
 const natsWsUrl = 'wss://url.com:443';
