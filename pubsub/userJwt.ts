@@ -1,20 +1,20 @@
 import base64url from "base64url";
-import {addHours} from "date-fns";
-import {v5 as uuid} from "uuid";
-import {generateUserNKeys, getNKeysFromSeed, KeyPair} from "./nKeys";
+import { addHours } from "date-fns";
+import { v5 as uuid } from "uuid";
+import { generateUserNKeys, getNKeysFromSeed, KeyPair } from "./nKeys";
 
 export const jwtExpirationHours = 2;
 
 export function createAppJwt(
-    developerSeed: string,
-    expirationDate: Date = addHours(new Date(), jwtExpirationHours)
+  developerSeed: string,
+  expirationDate: Date = addHours(new Date(), jwtExpirationHours),
 ) {
   const { seed: userSeed } = generateUserNKeys();
   const jwt = generateUserJwt({ userSeed, developerSeed, expirationDate });
   return {
     jwt,
-    userSeed
-  }
+    userSeed,
+  };
 }
 
 export function generateUserJwt({
@@ -32,7 +32,7 @@ export function generateUserJwt({
   const payload = {
     jti: getJti(),
     iat: getIat(),
-    exp: getExp(expirationDate),
+    // exp: getExp(expirationDate), // optionally, expire
     iss: developer.getPublicKey(),
     name: "developer",
     sub: user.getPublicKey(),
@@ -67,7 +67,7 @@ function signJwt(payload: any, keyPair: KeyPair): string {
     "." +
     base64url.encode(JSON.stringify(payload));
   const sigBase64Url = base64url.encode(
-    Buffer.from(keyPair.sign(Buffer.from(jwtBase)))
+    Buffer.from(keyPair.sign(Buffer.from(jwtBase))),
   );
   const jwt = jwtBase + "." + sigBase64Url;
 
