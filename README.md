@@ -1,12 +1,12 @@
 Welcome to the documentation for the WebSocket SDK for the Data Layer! This SDK allows seamless integration with our Data Layer solution, enabling you to leverage real-time data streams in your applications using WebSocket communication. With the WebSocket SDK, you can unlock the power of the Data Layer and harness real-time insights for your data-driven projects.
 
-[syntropy-pubsub-ws](https://github.com/SyntropyNet/pubsub-ws) is a TypeScript library for the Syntropy Data Layer project that allows you to subscribe to **existing data streams or publish new ones from frontend applications**. This library is built on top of the NATS messaging system with WebSocket support, providing a convenient way to integrate your frontend **TypeScript** applications with the Syntropy Data Layer platform.
+[synternet-pubsub-ws](https://github.com/Synternet/pubsub-ws) is a TypeScript library for the Synternet Data Layer project that allows you to subscribe to **existing data streams or publish new ones from frontend applications**. This library is built on top of the NATS messaging system with WebSocket support, providing a convenient way to integrate your frontend **TypeScript** applications with the Synternet Data Layer platform.
 
 # Features
 
 The WebSocket SDK for Data Layer offers the following features:
 
-- **Subscribe to Existing Data Streams**: Easily subscribe to pre-existing data streams within the Syntropy Data Layer. Stay updated with real-time data insights and leverage them in your applications.
+- **Subscribe to Existing Data Streams**: Easily subscribe to pre-existing data streams within the Synternet Data Layer. Stay updated with real-time data insights and leverage them in your applications.
 
 - **Publish New Data Streams**: Create and publish your own data streams directly from your applications. Share data with other participants in the Data Layer, enabling collaboration and innovation.
 
@@ -21,22 +21,23 @@ With these powerful features, the WebSocket SDK empowers you to seamlessly inter
 To use the WebSocket SDK for Data  Layer in your project you can install it using npm:
 
 ```shell
-npm install git@github.com:SyntropyNet/pubsub-ws
+npm install git@github.com:Synternet/pubsub-ws
 ```
 
 # Getting Started
 
-Before you begin using the WebSocket SDK, make sure you have the necessary credentials and access tokens from the Syntropy Developer Portalplatform. These credentials will allow you to connect to the Data Availability Layer and subscribe to or publish data streams.
+Before you begin using the WebSocket SDK, make sure you have the necessary credentials and access tokens from the Synternet Developer Portalplatform. These credentials will allow you to connect to the Data Availability Layer and subscribe to or publish data streams.
 
 ## Usage
 
-For detailed usage examples, please refer to the [examples directory](https://github.com/SyntropyNet/pubsub-ws/examples) in the repository. These examples cover various scenarios and demonstrate how to utilize the SDK's features effectively.
+For detailed usage examples, please refer to the [examples directory](https://github.com/Synternet/pubsub-ws/examples) in the repository. These examples cover various scenarios and demonstrate how to utilize the SDK's features effectively.
 
-The preferred method of authentication is using an access token from the [developer portal](https://developer-portal.syntropynet.com/).
+The preferred method of authentication is using an access token from the [portal (mainnet)](https://portal.synternet.com/) or [portal (testnet)](https://portal-testnet.synternet.com/).
 
 ```TypeScript
 import { subscribe, Message, NatsConfig, createAppJwt } from 'pubsub-ws';
 
+// See: https://docs.synternet.com/build/dl-access-points
 const natsWsUrl = 'wss://url.com:443';
 const accessToken = 'EXAMPLE_ACCESS_TOKEN';
 const exampleSubscribeSubject = 'example.sub.subject';
@@ -77,7 +78,7 @@ main();
 
 ## Contributing
 
-We welcome contributions from the community! If you find any issues or have suggestions for improvements, please open an issue or submit a pull request on the [GitHub repository](https://github.com/SyntropyNet/pubsub-python). We appreciate your feedback and collaboration in making this SDK even better. 
+We welcome contributions from the community! If you find any issues or have suggestions for improvements, please open an issue or submit a pull request on the [GitHub repository](https://github.com/Synternet/pubsub-ws). We appreciate your feedback and collaboration in making this SDK even better.
 
 ## Contribution Guidelines
 
