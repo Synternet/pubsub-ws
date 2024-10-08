@@ -4,7 +4,7 @@ import { createAuthenticator } from './authenticator';
 import {decodeMessage, encodeMessage} from './codec';
 import { natsStaticConfig } from './config';
 
-async function natsConnect(config: NatsConfig, jwt: string, nkey: string) {
+export async function natsConnect(config: NatsConfig, jwt: string, nkey: string) {
   const options: ConnectionOptions = {
     servers: config.url,
     authenticator: createAuthenticator(jwt, nkey),
